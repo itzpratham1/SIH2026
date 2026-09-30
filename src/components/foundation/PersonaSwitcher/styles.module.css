@@ -1,0 +1,44 @@
+.switcher {
+  display: flex;
+  gap: var(--wg-space-xs);
+  padding: var(--wg-space-xs);
+  background-color: var(--wg-switcher-track);
+  border-radius: var(--wg-radius-full);
+  box-shadow: var(--wg-shadow-inner);
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.option {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wg-space-xs);
+  min-height: var(--wg-tap-min);
+  padding: var(--wg-space-sm) var(--wg-space-md);
+  border: 0;
+  border-radius: var(--wg-radius-full);
+  background-color: transparent;
+  color: var(--wg-on-primary-container);
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-label-lg-size);
+  font-weight: var(--wg-label-lg-weight);
+  letter-spacing: var(--wg-label-lg-spacing);
+  cursor: pointer;
+  white-space: nowrap;
+  flex: 1 0 auto;
+  justify-content: center;
+}
+
+.option[data-active='true'] {
+  background-color: var(--wg-surface);
+  color: var(--wg-primary);
+}
+
+.icon {
+  font-size: var(--wg-body-lg-size);
+  line-height: 1;
+}
+
+.label {
+  line-height: 1;
+}

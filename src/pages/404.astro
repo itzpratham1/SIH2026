@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout/index.astro';
+---
+
+<BaseLayout title="Page Not Found — WeighGuard">
+  <div style="max-width: 600px; margin: 4rem auto; padding: 2rem; text-align: center; font-family: var(--font-sans, system-ui, sans-serif);">
+    <div style="font-size: 56px; margin-bottom: 1rem;">⚖️</div>
+    <h1 style="font-size: 28px; font-weight: 800; color: var(--wg-on-surface, #0f172a); margin-bottom: 0.5rem;">
+      404: Page Not Found
+    </h1>
+    <p style="color: var(--wg-on-surface-variant, #64748b); font-size: 15px; margin-bottom: 2rem; line-height: 1.5;">
+      The requested resource or statutory record could not be found, or is being redirected to the client-side viewer.
+    </p>
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <a
+        href="/"
+        style="padding: 10px 20px; border-radius: 8px; background: var(--wg-primary, #047857); color: #ffffff; text-decoration: none; font-weight: 600; font-size: 14px;"
+      >
+        ← Return to Homepage
+      </a>
+      <a
+        href="/dashboard/"
+        style="padding: 10px 20px; border-radius: 8px; background: var(--wg-surface-low, #f1f5f9); color: var(--wg-on-surface, #0f172a); text-decoration: none; font-weight: 600; font-size: 14px; border: 1px solid #cbd5e1;"
+      >
+        Open Dashboard
+      </a>
+    </div>
+  </div>
+
+  <script is:inline>
+    // Automatic client-side router fallback for dynamic certificates and rejections
+    try {
+      var path = window.location.pathname;
+      var certMatch = path.match(/\/certificate\/(CERT-[A-Za-z0-9\-]+)\/?$/i);
+      if (certMatch && certMatch[1]) {
+        window.location.replace('/certificate/?id=' + encodeURIComponent(certMatch[1]));
+      }
+      var rejMatch = path.match(/\/rejection\/(CERT-[A-Za-z0-9\-]+)\/?$/i);
+      if (rejMatch && rejMatch[1]) {
+        window.location.replace('/rejection/?id=' + encodeURIComponent(rejMatch[1]));
+      }
+    } catch (e) {
+      // ignore
+    }
+  </script>
+</BaseLayout>

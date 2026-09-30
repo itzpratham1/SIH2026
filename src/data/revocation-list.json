@@ -1,0 +1,25 @@
+{
+  "key_version": "v1-ed25519-2026",
+  "updated_at": "2026-09-29T14:17:09Z",
+  "revoked": [
+    {
+      "cert_id": "CERT-2026-4491-1008",
+      "instrument_id": "IND-WB-4491-GZP",
+      "revoked_at": "2026-09-14T14:17:09Z",
+      "reason": "MPE tolerance exceeded (+18.5g on 5kg standard); failed verification inspection"
+    },
+    {
+      "cert_id": "CERT-2026-1082-1018",
+      "instrument_id": "IND-SC-1082-AZD",
+      "revoked_at": "2026-09-14T14:17:09Z",
+      "reason": "Physical seal wire broken; unauthorized recalibration detected during market squad audit"
+    },
+    {
+      "cert_id": "CERT-2026-7790-1024",
+      "instrument_id": "IND-WB-7790-VSH",
+      "revoked_at": "2026-09-14T14:17:09Z",
+      "reason": "Load cell calibration compromised (+32kg drift on 20T calibration test)"
+    }
+  ],
+  "signature": "a3X3+ODK+Pc/5NCZgH5iA0EFiTfgVviNeXP9FZaoddyJxh44JGvsPQDlc/mfq3yFoO6aaEAd9pYOmbUG5F03BQ=="
+}

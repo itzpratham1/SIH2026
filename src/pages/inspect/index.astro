@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout/index.astro';
+import FieldInspection from '../../components/features/FieldInspection/index.tsx';
+import ErrorBoundary from '../../components/foundation/ErrorBoundary/index.tsx';
+---
+
+<BaseLayout title="Field Inspection & Stamping — Legal Metrology">
+  <ErrorBoundary>
+    <FieldInspection client:load />
+  </ErrorBoundary>
+</BaseLayout>
+

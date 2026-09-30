@@ -1,46 +1,44 @@
-# Astro Starter Kit: Basics
+# WeighGuard — Offline-First Legal Metrology Verification
 
-```sh
-npm create astro@latest -- --template basics
+Smart India Hackathon 2026 · Problem Statement 26036 · Ministry of Consumer Affairs, Legal Metrology Division
+
+WeighGuard verifies weighing and measuring instruments offline with Ed25519-signed QR certificates, and prioritises re-inspection with a live confidence score.
+
+## Tech Stack
+
+- **Frontend**: Astro 7 + React 18 islands, TypeScript, CSS Modules
+- **Backend**: FastAPI (Python), SQLite, Ed25519 signing, CBOR
+- **PWA**: Service worker with cache-first offline support
+- **Crypto**: tweetnacl (client-side), PyNaCl (server-side), cbor-x/cbor2
+
+## Project Structure
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+├── backend/          # FastAPI signing & verification service
+├── src/
+│   ├── components/   # React islands + Astro components
+│   ├── layouts/      # Base HTML layout
+│   ├── lib/          # API client, CBOR codec, decay engine
+│   ├── pages/        # Astro pages (static + dynamic routes)
+│   └── styles/       # Global CSS + design tokens
+├── public/           # PWA manifest, service worker, static data
+└── scripts/          # Build & export utilities
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Commands
 
-## 🧞 Commands
+| Command | Action |
+| :------ | :----- |
+| `npm install` | Install dependencies |
+| `npm run dev` | Start Astro dev server at `localhost:4322` |
+| `npm run build` | Build production site to `./dist/` |
+| `npm run preview` | Preview production build |
+| `python -m backend.run_server` | Start FastAPI backend at `localhost:8001` |
 
-All commands are run from the root of the project, from a terminal:
+## Architecture
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Offline-first**: All verification works without network. CBOR certificates are verified client-side using bundled Ed25519 public key.
+- **Trust decay**: Confidence scores decay over time based on verification history and usage patterns.
+- **Multi-persona**: Citizen verification, LMO field inspection, trader portal, and admin dashboard.
+- **Statutory compliance**: Schedule XI certificates and Schedule XII rejection notices conform to Legal Metrology (General) Rules, 2011.

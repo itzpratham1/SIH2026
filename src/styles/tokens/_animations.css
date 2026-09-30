@@ -1,0 +1,168 @@
+/**
+ * WeighGuard Design Tokens — Animations & Motion
+ * Purposeful, government-grade motion: functional, not decorative.
+ * Every animation respects prefers-reduced-motion.
+ */
+
+:root {
+  /* Duration scale */
+  --wg-dur-instant:  80ms;
+  --wg-dur-fast:    150ms;
+  --wg-dur-normal:  220ms;
+  --wg-dur-slow:    350ms;
+  --wg-dur-reveal:  480ms;
+
+  /* Easing functions */
+  --wg-ease-standard:   cubic-bezier(0.2, 0, 0, 1);     /* Material standard */
+  --wg-ease-decel:      cubic-bezier(0, 0, 0.2, 1);     /* Entering elements */
+  --wg-ease-accel:      cubic-bezier(0.3, 0, 1, 1);     /* Exiting elements */
+  --wg-ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1); /* Playful press feedback */
+  --wg-ease-out-back:   cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ─────────────────────────────────────────────
+   KEYFRAME LIBRARY
+   ───────────────────────────────────────────── */
+
+/* Fade + subtle lift-up — for cards, panels, banners */
+@keyframes wg-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in only — for overlays, text */
+@keyframes wg-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Scale-up from centre — for modals, result banners */
+@keyframes wg-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Slide in from right — for side panels, drawers */
+@keyframes wg-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slot-machine count-up base (JS-driven, animation provides the visibility hook) */
+@keyframes wg-count-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Attention pulse — for critical badges, live sync dot */
+@keyframes wg-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(21, 128, 61, 0.55);
+  }
+  60% {
+    box-shadow: 0 0 0 7px rgba(21, 128, 61, 0);
+  }
+}
+
+/* Pulse for critical/red states */
+@keyframes wg-pulse-critical {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(185, 28, 28, 0.45);
+  }
+  60% {
+    box-shadow: 0 0 0 7px rgba(185, 28, 28, 0);
+  }
+}
+
+/* Pulse for amber/warning states */
+@keyframes wg-pulse-amber {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(180, 83, 9, 0.4);
+  }
+  60% {
+    box-shadow: 0 0 0 6px rgba(180, 83, 9, 0);
+  }
+}
+
+/* Continuous rotation — for loading/sync spinner */
+@keyframes wg-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Shimmer scan-line — for camera viewfinder overlay */
+@keyframes wg-scanline {
+  0%   { top: 0; opacity: 0.85; }
+  50%  { opacity: 0.5; }
+  100% { top: calc(100% - 2px); opacity: 0.85; }
+}
+
+/* Progress bar fill */
+@keyframes wg-progress-fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Shake — for validation errors */
+@keyframes wg-shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(6px); }
+  60%      { transform: translateX(-4px); }
+  80%      { transform: translateX(4px); }
+}
+
+/* Status check tick draw — for verified states */
+@keyframes wg-check-draw {
+  from { stroke-dashoffset: 40; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Horizontal shimmer for skeleton/loading states */
+@keyframes wg-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Entrance stagger utility classes (apply animation-delay manually) */
+.wg-reveal {
+  animation: wg-fade-up var(--wg-dur-reveal) var(--wg-ease-decel) both;
+}
+
+.wg-reveal-fast {
+  animation: wg-fade-up var(--wg-dur-normal) var(--wg-ease-decel) both;
+}
+
+/* ─────────────────────────────────────────────
+   REDUCED MOTION OVERRIDES
+   ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .wg-reveal,
+  .wg-reveal-fast {
+    animation: none;
+  }
+}

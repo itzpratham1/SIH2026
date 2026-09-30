@@ -1,0 +1,86 @@
+---
+import styles from './styles.module.css';
+
+interface Props {
+  noticeNo: string;
+  instrumentId: string;
+  deviceModel: string;
+  ownerName: string;
+  location: string;
+  mandiCluster?: string;
+  oldCertId: string;
+  revokedOn: string;
+  recordedGrounds: string;
+  rectificationDeadline: string;
+}
+
+const props = Astro.props;
+---
+
+<article aria-label={`Notice of Rejection ${props.noticeNo}`} class={styles.sheet}>
+  <header class={styles.masthead}>
+    <p class={styles.govLine}>Government of India · Ministry of Consumer Affairs, Food &amp; Public Distribution</p>
+    <p class={styles.deptLine}>Legal Metrology Division</p>
+    <h1 class={styles.docTitle}>Notice of Rejection</h1>
+    <p class={styles.scheduleLine}>Issued under the Legal Metrology (General) Rules, 2011 — Schedule XII</p>
+    <p data-forensic class={styles.noticeNo}>No. {props.noticeNo}</p>
+  </header>
+
+  <section aria-label="Rejection order" class={styles.order}>
+    <p class={styles.orderText}>
+      The verification stamp / certificate <strong data-forensic>{props.oldCertId}</strong> issued
+      in respect of the instrument described below stands
+      <strong class={styles.rejected}> REJECTED and OBLITERATED</strong> with effect from
+      <strong data-forensic> {props.revokedOn}</strong>. The instrument shall not be used for trade
+      until re-verified and re-stamped by a Legal Metrology Officer.
+    </p>
+  </section>
+
+  <dl class={styles.fieldGrid}>
+    <div class={styles.field}>
+      <dt>Trader / Owner</dt>
+      <dd>{props.ownerName}</dd>
+    </div>
+    <div class={styles.field}>
+      <dt>Premises</dt>
+      <dd>{props.location}</dd>
+    </div>
+    {props.mandiCluster && (
+      <div class={styles.field}>
+        <dt>Market Cluster</dt>
+        <dd>{props.mandiCluster}</dd>
+      </div>
+    )}
+    <div class={styles.field}>
+      <dt>Instrument</dt>
+      <dd>{props.deviceModel}</dd>
+    </div>
+    <div class={styles.field}>
+      <dt data-forensic>Instrument ID</dt>
+      <dd data-forensic>{props.instrumentId}</dd>
+    </div>
+    <div class={styles.field}>
+      <dt>Recorded Grounds</dt>
+      <dd>{props.recordedGrounds}</dd>
+    </div>
+    <div class={styles.field}>
+      <dt>Rectification Deadline</dt>
+      <dd data-forensic>{props.rectificationDeadline} (14-day statutory period)</dd>
+    </div>
+    <div class={styles.field}>
+      <dt>Registry</dt>
+      <dd>Certificate pushed to signed revocation list; offline verifiers alert on scan.</dd>
+    </div>
+  </dl>
+
+  <footer class={styles.signOff}>
+    <div class={styles.signBox}>
+      <p class={styles.signLine}>_________________________</p>
+      <p class={styles.signCaption}>Inspector, Legal Metrology (issuing authority)</p>
+    </div>
+    <div class={styles.signBox}>
+      <p class={styles.signLine}>_________________________</p>
+      <p class={styles.signCaption}>Trader acknowledgement of receipt</p>
+    </div>
+  </footer>
+</article>

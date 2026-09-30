@@ -1,0 +1,82 @@
+/**
+ * WeighGuard Design Tokens — Colors
+ * Single source of truth: DESIGN.md
+ * Every value exposed as a --wg-* CSS custom property.
+ */
+:root {
+  /* Parchment surfaces */
+  --wg-surface: #fbf9f4;
+  --wg-surface-dim: #dfd5c4;
+  --wg-surface-bright: #fbf9f4;
+  --wg-surface-lowest: #ffffff;
+  --wg-surface-low: #f8f5ee;
+  --wg-surface-container: #f4efe6;
+  --wg-surface-high: #ece5d8;
+  --wg-surface-highest: #e3dacb;
+  --wg-on-surface: #1c1917;
+  --wg-on-surface-variant: #57534e;
+  --wg-inverse-surface: #33302c;
+  --wg-inverse-on-surface: #f7efe9;
+  --wg-outline: #a8a29e;
+  --wg-outline-variant: #d8cfc0;
+  --wg-surface-tint: #4c635c;
+
+  /* Primary — deep pine forest */
+  --wg-primary: #132a24;
+  --wg-on-primary: #ffffff;
+  --wg-primary-container: #1b382b;
+  --wg-on-primary-container: #c4d8ce;
+  --wg-inverse-primary: #b2ccc3;
+  --wg-primary-border: #2d5241;
+  --wg-switcher-track: #10231e;
+
+  /* Secondary — warm amber alert */
+  --wg-secondary: #b45309;
+  --wg-on-secondary: #ffffff;
+  --wg-secondary-container: #d97706;
+  --wg-on-secondary-container: #451a03;
+
+  /* Tertiary */
+  --wg-tertiary: #001505;
+  --wg-on-tertiary: #ffffff;
+  --wg-tertiary-container: #002d10;
+  --wg-on-tertiary-container: #3d9f58;
+
+  /* Error / critical red */
+  --wg-error: #b91c1c;
+  --wg-on-error: #ffffff;
+  --wg-error-container: #fee2e2;
+  --wg-on-error-container: #7f1d1d;
+
+  /* Fixed tonal accents */
+  --wg-primary-fixed: #cee8df;
+  --wg-primary-fixed-dim: #a3c2b4;
+  --wg-on-primary-fixed: #081f1a;
+  --wg-on-primary-fixed-variant: #344b44;
+  --wg-secondary-fixed: #fef3c7;
+  --wg-secondary-fixed-dim: #fde68a;
+  --wg-on-secondary-fixed: #78350f;
+  --wg-on-secondary-fixed-variant: #763300;
+  --wg-tertiary-fixed: #95f8a7;
+  --wg-tertiary-fixed-dim: #79db8d;
+  --wg-on-tertiary-fixed: #00210a;
+  --wg-on-tertiary-fixed-variant: #005323;
+
+  /* Base */
+  --wg-background: #fbf9f4;
+  --wg-on-background: #1e1b17;
+  --wg-surface-variant: #e8e1db;
+
+  /* Semantic forensic tiers */
+  --wg-success-bg: #f0fdf4;
+  --wg-success-text: #15803d;
+  --wg-success-border: #bbf7d0;
+  --wg-success-strong: #14532d;
+  --wg-warning-bg: #fffbeb;
+  --wg-warning-text: #92400e;
+  --wg-warning-border: #fde68a;
+  --wg-warning-strong: #78350f;
+  --wg-critical-bg: #fef2f2;
+  --wg-critical-text: #991b1b;
+  --wg-critical-border: #fecaca;
+}

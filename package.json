@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "weighguard",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -12,7 +12,23 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.3.5"
+    "@astrojs/react": "^7.0.0",
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/cli": "^8.5.2",
+    "@capacitor/core": "^8.5.2",
+    "astro": "^7.3.5",
+    "cbor-x": "^1.6.6",
+    "html5-qrcode": "^2.3.8",
+    "jsqr": "^1.4.0",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tweetnacl": "^1.0.3"
+  },
+  "devDependencies": {
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1"
   },
   "allowScripts": {
     "esbuild": true

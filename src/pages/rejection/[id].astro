@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout/index.astro';
+import ScheduleXII from '../../components/documents/ScheduleXII/index.astro';
+import PrintButton from '../../components/foundation/PrintButton/index.tsx';
+import revocationList from '../../data/revocation-list.json';
+import seedInstruments from '../../data/seed-instruments.json';
+import seedCerts from '../../data/seed-certificates.json';
+import type { InstrumentRecord, RevocationEntry } from '../../lib/types';
+import styles from './styles.module.css';
+
+export function getStaticPaths() {
+  const certIds = new Set<string>();
+  (revocationList.revoked as RevocationEntry[]).forEach((e) => certIds.add(e.cert_id));
+  (seedInstruments as InstrumentRecord[]).forEach((i) => {
+    if (i.cert_id) certIds.add(i.cert_id);
+  });
+  (seedCerts as any[]).forEach((c) => {
+    if (c.cert_id) certIds.add(c.cert_id);
+  });
+  return Array.from(certIds).map((id) => ({
+    params: { id },
+  }));
+}
+
+const { id } = Astro.params;
+let entry = (revocationList.revoked as RevocationEntry[]).find((e) => e.cert_id === id);
+
+if (!entry) {
+  const inst = (seedInstruments as InstrumentRecord[]).find((i) => i.cert_id === id);
+  entry = {
+    cert_id: id as string,
+    instrument_id: inst?.instrument_id || 'IND-DEMO',
+    revoked_at: new Date().toISOString(),
+    reason: 'Statutory rejection: Observed error exceeded statutory MPE tolerance under Rule 19 of Legal Metrology (General) Rules, 2011',
+  };
+}
+
+const instrument = (seedInstruments as InstrumentRecord[]).find(
+  (i) => i.instrument_id === entry.instrument_id,
+);
+const oldCert = (seedCerts as { cert_id: string; owner_name: string; location: string; mandi_cluster?: string; device_model: string }[]).find(
+  (c) => c.cert_id === entry.cert_id,
+);
+
+function formatDate(iso: string): string {
+  const d = new Date(iso);
+  const day = String(d.getUTCDate()).padStart(2, '0');
+  const month = d.toLocaleString('en-GB', { month: 'short', timeZone: 'UTC' });
+  return `${day}-${month}-${d.getUTCFullYear()}`;
+}
+
+const revokedDate = new Date(entry.revoked_at);
+const deadline = new Date(revokedDate.getTime() + 14 * 24 * 3600 * 1000);
+const noticeNo = entry.cert_id.replace('CERT', 'REJ-NOTICE');
+---
+
+<BaseLayout title={`Rejection Notice ${noticeNo}`}>
+  <div class={styles.toolbar}>
+    <div class={styles.backLinks}>
+      <a href="/" class={styles.backLink}>← Home</a>
+      <span class={styles.backSep} aria-hidden="true">/</span>
+      <a href="/dashboard/" class={styles.backLink}>Dashboard</a>
+    </div>
+    <PrintButton client:load label="Print / Export PDF" />
+  </div>
+  <ScheduleXII
+    noticeNo={noticeNo}
+    instrumentId={entry.instrument_id}
+    deviceModel={oldCert?.device_model ?? instrument?.device_model ?? entry.instrument_id}
+    ownerName={oldCert?.owner_name ?? instrument?.owner_name ?? 'Recorded trader'}
+    location={oldCert?.location ?? instrument?.location ?? 'Recorded premises'}
+    mandiCluster={oldCert?.mandi_cluster ?? instrument?.mandi_cluster}
+    oldCertId={entry.cert_id}
+    revokedOn={formatDate(entry.revoked_at)}
+    recordedGrounds={entry.reason}
+    rectificationDeadline={formatDate(deadline.toISOString())}
+  />
+</BaseLayout>

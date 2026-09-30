@@ -1,0 +1,79 @@
+---
+import QRCode from 'qrcode';
+import BaseLayout from '../../layouts/BaseLayout/index.astro';
+import ScheduleXI from '../../components/documents/ScheduleXI/index.astro';
+import PrintButton from '../../components/foundation/PrintButton/index.tsx';
+import DynamicCertificate from '../../components/features/DynamicCertificate/index.tsx';
+import seedCerts from '../../data/seed-certificates.json';
+import revocationList from '../../data/revocation-list.json';
+import { computeDecay } from '../../lib/decay';
+import type { EnrichedCertificatePayload } from '../../lib/types';
+import styles from './styles.module.css';
+
+export function getStaticPaths() {
+  return seedCerts.map((c) => ({ params: { id: c.cert_id } }));
+}
+
+const { id } = Astro.params;
+
+interface SeedCertificate extends EnrichedCertificatePayload {
+  cbor_base64: string;
+  created_at: string;
+}
+
+const cert = (seedCerts as SeedCertificate[]).find((c) => c.cert_id === id);
+
+function formatDate(iso: string): string {
+  const d = new Date(iso);
+  const day = String(d.getUTCDate()).padStart(2, '0');
+  const month = d.toLocaleString('en-GB', { month: 'short', timeZone: 'UTC' });
+  return `${day}-${month}-${d.getUTCFullYear()}`;
+}
+
+const qrDataUrl = cert ? await QRCode.toDataURL(cert.cbor_base64 ?? '', {
+  width: 512,
+  margin: 2,
+  errorCorrectionLevel: 'M',
+}) : '';
+
+const confidence = cert ? computeDecay(cert) : null;
+const basisLabel = cert ? (cert.confidence_basis === 'time_and_usage' ? 'time + usage' : 'time-only') : '';
+---
+
+<BaseLayout title={`Certificate ${id}`}>
+  <div class={styles.toolbar} data-print-hide="true">
+    <div class={styles.backLinks}>
+      <a href="/" class={styles.backLink}>← Home</a>
+      <span class={styles.backSep} aria-hidden="true">/</span>
+      <a href="/dashboard/" class={styles.backLink}>Dashboard</a>
+    </div>
+    <PrintButton client:load />
+  </div>
+  {cert && confidence ? (
+    <ScheduleXI
+      certId={cert.cert_id}
+      instrumentId={cert.instrument_id}
+      instrumentType={cert.instrument_type}
+      deviceModel={cert.device_model}
+      ownerName={cert.owner_name}
+      location={cert.location}
+      mandiCluster={cert.mandi_cluster}
+      physicalSealNumber={cert.physical_seal_number}
+      officerName={cert.officer_name}
+      officerId={cert.officer_id}
+      verifiedOn={formatDate(cert.last_verification_date)}
+      validUntil={formatDate(cert.valid_until)}
+      keyVersion={cert.key_version}
+      qrDataUrl={qrDataUrl}
+      confidenceScore={confidence.score.toFixed(1)}
+      confidenceBand={confidence.band}
+      confidenceBasis={basisLabel}
+      basisDescription={confidence.basis_description}
+      mpeStatusText={confidence.economic_impact.mpe_status_text}
+      clarificationText={confidence.clarification_text}
+      revocationUpdatedAt={formatDate(revocationList.updated_at)}
+    />
+  ) : (
+    <DynamicCertificate client:load certId={id} />
+  )}
+</BaseLayout>

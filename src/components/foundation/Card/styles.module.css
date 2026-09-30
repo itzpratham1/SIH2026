@@ -1,0 +1,59 @@
+/* WeighGuard Foundation — Card
+   Parchment-surface container with optional reveal animation. */
+
+.card {
+  background-color: var(--wg-surface-lowest);
+  border: var(--wg-border-hairline);
+  border-radius: var(--wg-radius-xl);
+  box-shadow: var(--wg-shadow-sm);
+  padding: var(--wg-space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wg-space-md);
+  transition:
+    box-shadow 200ms ease,
+    transform 180ms var(--wg-ease-spring, ease);
+}
+
+/* Opt-in interactive hover lift via data-interactive */
+.card[data-interactive='true']:hover {
+  box-shadow: 0 6px 20px rgb(19 42 36 / 0.09);
+  transform: translateY(-2px);
+}
+
+.card[data-interactive='true']:active {
+  transform: scale(0.99);
+}
+
+/* Opt-in entrance animation */
+.card[data-animate='true'] {
+  animation: wg-fade-up 380ms var(--wg-ease-decel, ease) both;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-headline-sm-size);
+  font-weight: var(--wg-headline-sm-weight);
+  line-height: var(--wg-headline-sm-line);
+  color: var(--wg-on-surface);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wg-space-sm);
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-body-md-size);
+  line-height: var(--wg-body-md-line);
+  color: var(--wg-on-surface-variant);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card[data-interactive='true']:hover {
+    transform: none;
+  }
+  .card[data-animate='true'] {
+    animation: none;
+  }
+}

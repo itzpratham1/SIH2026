@@ -1,0 +1,8 @@
+{
+  "key_version": "v1-ed25519-2026",
+  "algorithm": "Ed25519",
+  "public_key_base64": "7yGFj68Szwevvjb93n2V/cOOgkCcOFShlkhLygJqw+8=",
+  "public_key_hex": "ef21858faf12cf07afbe36fdde7d95fdc38e82409c3854a196484bca026ac3ef",
+  "issuer": "Ministry of Consumer Affairs, Food & Public Distribution | Legal Metrology Division",
+  "description": "WeighGuard Central Statutory Certification Authority"
+}

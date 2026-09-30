@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout/index.astro';
+import CitizenVerification from '../../components/features/CitizenVerification/index';
+import ErrorBoundary from '../../components/foundation/ErrorBoundary/index.tsx';
+import styles from './styles.module.css';
+---
+
+<BaseLayout title="Verify an Instrument">
+  <section aria-label="Citizen verification" class={styles.shell}>
+    <header>
+      <a href="/" class={styles.backLink} title="Return to Homepage">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        <span>Back to Home</span>
+      </a>
+      <h1 class={styles.title}>Verify Weighing Scale</h1>
+      <p class={styles.lede}>
+        Scan the QR code or select a preset to check certificate authenticity and physical seal numbers offline.
+      </p>
+    </header>
+
+    <div data-slot="citizen-verification-island" class={styles.slot}>
+      <ErrorBoundary>
+        <CitizenVerification client:load />
+      </ErrorBoundary>
+    </div>
+  </section>
+</BaseLayout>

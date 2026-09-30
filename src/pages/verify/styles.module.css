@@ -1,0 +1,60 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wg-space-sm);
+  width: 100%;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--wg-on-surface-variant);
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-label-md-size);
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 4px;
+  padding: 4px 8px;
+  margin-left: -8px;
+  border-radius: var(--wg-radius-md);
+  transition: all 150ms ease;
+  width: fit-content;
+}
+
+.backLink:hover {
+  color: var(--wg-primary);
+  background-color: var(--wg-surface-high);
+}
+
+.title {
+  font-family: var(--wg-font-ui);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28px;
+  color: var(--wg-primary);
+}
+
+.lede {
+  font-family: var(--wg-font-ui);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--wg-on-surface-variant);
+  margin-top: 4px;
+}
+
+.slot {
+  width: 100%;
+}
+
+@media (min-width: 48rem) {
+  .title {
+    font-size: var(--wg-headline-lg-size);
+    line-height: var(--wg-headline-lg-line);
+  }
+  
+  .lede {
+    font-size: var(--wg-body-md-size);
+    line-height: var(--wg-body-md-line);
+  }
+}

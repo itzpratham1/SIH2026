@@ -1,0 +1,20 @@
+[
+  {
+    "mandi_id": "MANDI-DEL-02",
+    "mandi_name": "Azadpur APMC Fruit & Vegetable Market",
+    "location": "Azadpur, North Delhi",
+    "total_stalls": 240
+  },
+  {
+    "mandi_id": "MANDI-DEL-01",
+    "mandi_name": "Ghazipur APMC Wholesale Yard",
+    "location": "Ghazipur, East Delhi / NCR",
+    "total_stalls": 120
+  },
+  {
+    "mandi_id": "MANDI-MUM-01",
+    "mandi_name": "Vashi APMC Agricultural Market",
+    "location": "Sector 19, Vashi, Navi Mumbai",
+    "total_stalls": 180
+  }
+]

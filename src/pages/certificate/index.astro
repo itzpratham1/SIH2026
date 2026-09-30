@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout/index.astro';
+import DynamicCertificate from '../../components/features/DynamicCertificate/index.tsx';
+import PrintButton from '../../components/foundation/PrintButton/index.tsx';
+import styles from './styles.module.css';
+---
+
+<BaseLayout title="Certificate of Verification — Schedule XI">
+  <div class={styles.toolbar} data-print-hide="true">
+    <div class={styles.backLinks}>
+      <a href="/" class={styles.backLink}>← Home</a>
+      <span class={styles.backSep} aria-hidden="true">/</span>
+      <a href="/dashboard/" class={styles.backLink}>Dashboard</a>
+      <span class={styles.backSep} aria-hidden="true">/</span>
+      <a href="/inspect/" class={styles.backLink}>Inspection</a>
+    </div>
+    <PrintButton client:load />
+  </div>
+  <DynamicCertificate client:load />
+</BaseLayout>

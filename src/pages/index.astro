@@ -1,11 +1,130 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from '../layouts/BaseLayout/index.astro';
+import styles from './styles.module.css';
+import seedInstruments from '../data/seed-instruments.json';
+import seedMandis from '../data/seed-mandis.json';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const totalInstruments = seedInstruments.length;
+const totalMandis = seedMandis.length;
+const dueForReview = seedInstruments.filter(
+  (inst) => (inst as any).confidence?.band === 'amber' || (inst as any).confidence?.band === 'red' || inst.status === 'REJECTED'
+).length;
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="Legal Metrology Verification">
+  <div class={styles.hero}>
+    <span class={styles.kicker}>SIH 2026 · PS 26036 · Ministry of Consumer Affairs</span>
+    <h1 class={styles.title}>Trust every scale, even with zero signal.</h1>
+    <p class={styles.lede}>
+      Offline verification for weighing &amp; measuring instruments using Ed25519 digital certificates, physical seal checks, and live trust scoring.
+    </p>
+
+    <dl class={styles.stats}>
+      <div class:list={[styles.stat, styles.statInstruments]}>
+        <dt>Instruments</dt>
+        <dd>{totalInstruments}</dd>
+      </div>
+      <div class:list={[styles.stat, styles.statMandis]}>
+        <dt>Mandis</dt>
+        <dd>{totalMandis}</dd>
+      </div>
+      <div class:list={[styles.stat, styles.statReview]}>
+        <dt>Due Review</dt>
+        <dd>{dueForReview}</dd>
+      </div>
+    </dl>
+  </div>
+
+  <section class={styles.problem}>
+    <div class={styles.problemHeader}>
+      <span class={styles.problemSeal}>⚖️</span>
+      <div>
+        <h2 class={styles.sectionTitle}>How WeighGuard Works</h2>
+        <p class={styles.sectionText}>
+          Verifies instruments locally without internet, ensuring traders, consumers, and inspectors can trust every weight anywhere.
+        </p>
+      </div>
+    </div>
+    <ol class={styles.steps}>
+      <li class:list={[styles.step, styles.step1]}>
+        <div class={styles.stepHeader}>
+          <span class={styles.stepBadge}>1</span>
+          <strong class={styles.stepTitle}>Scan Offline</strong>
+        </div>
+        <span class={styles.stepText}>Verify Ed25519 cryptographic signature and match physical seal code.</span>
+      </li>
+      <li class:list={[styles.step, styles.step2]}>
+        <div class={styles.stepHeader}>
+          <span class={styles.stepBadge}>2</span>
+          <strong class={styles.stepTitle}>Inspect &amp; Stamp</strong>
+        </div>
+        <span class={styles.stepText}>Test standard weights against MPE tolerance limits for instant pass/fail.</span>
+      </li>
+      <li class:list={[styles.step, styles.step3]}>
+        <div class={styles.stepHeader}>
+          <span class={styles.stepBadge}>3</span>
+          <strong class={styles.stepTitle}>Priority Triage</strong>
+        </div>
+        <span class={styles.stepText}>Trust decay algorithm highlights instruments most overdue for re-stamping.</span>
+      </li>
+    </ol>
+  </section>
+
+  <nav aria-label="Portal entrances" class={styles.entries}>
+    <a href="/verify/" class:list={[styles.entry, styles.entryVerify]}>
+      <span class={styles.iconBadge} aria-hidden="true">🔍</span>
+      <div class={styles.entryContent}>
+        <span class={styles.entryTitle}>Verify an Instrument</span>
+        <span class={styles.entryText}>Offline QR scan &amp; physical seal check</span>
+      </div>
+      <span class={styles.entryChevron} aria-hidden="true">›</span>
+    </a>
+    <a href="/inspect/" class:list={[styles.entry, styles.entryInspect]}>
+      <span class={styles.iconBadge} aria-hidden="true">👮</span>
+      <div class={styles.entryContent}>
+        <span class={styles.entryTitle}>Field Inspection &amp; Stamping</span>
+        <span class={styles.entryText}>MPE testing &amp; digital certificate issuance</span>
+      </div>
+      <span class={styles.entryChevron} aria-hidden="true">›</span>
+    </a>
+    <a href="/dashboard/?persona=trader" class:list={[styles.entry, styles.entryTrader]}>
+      <span class={styles.iconBadge} aria-hidden="true">🏪</span>
+      <div class={styles.entryContent}>
+        <span class={styles.entryTitle}>Trader Portal</span>
+        <span class={styles.entryText}>Track scales, expiry alerts &amp; renewal</span>
+      </div>
+      <span class={styles.entryChevron} aria-hidden="true">›</span>
+    </a>
+    <a href="/dashboard/?persona=lmo" class:list={[styles.entry, styles.entryLmo]}>
+      <span class={styles.iconBadge} aria-hidden="true">📋</span>
+      <div class={styles.entryContent}>
+        <span class={styles.entryTitle}>Inspector Route &amp; Triage</span>
+        <span class={styles.entryText}>Inspection route &amp; risk priority queue</span>
+      </div>
+      <span class={styles.entryChevron} aria-hidden="true">›</span>
+    </a>
+    <a href="/dashboard/?persona=admin" class:list={[styles.entry, styles.entryAdmin]}>
+      <span class={styles.iconBadge} aria-hidden="true">🏛️</span>
+      <div class={styles.entryContent}>
+        <span class={styles.entryTitle}>Admin Allocation Desk</span>
+        <span class={styles.entryText}>Mandi cluster index &amp; officer assignment</span>
+      </div>
+      <span class={styles.entryChevron} aria-hidden="true">›</span>
+    </a>
+    <a href="/demo-qr-sheet/" class:list={[styles.entry, styles.entryDemo]}>
+      <span class={styles.iconBadge} aria-hidden="true">📄</span>
+      <div class={styles.entryContent}>
+        <span class={styles.entryTitle}>Demo QR Test Sheet</span>
+        <span class={styles.entryText}>Printable test sheet with 5 statutory test scenarios</span>
+      </div>
+      <span class={styles.entryChevron} aria-hidden="true">›</span>
+    </a>
+  </nav>
+
+  <aside class={styles.notice}>
+    <strong class={styles.noticeTitle}>⚖️ Statutory Metrology Advisory</strong>
+    <p class={styles.noticeText}>
+      Confidence scores and Mandi Trust Indices are decision support tools. All statutory enforcement and certification remain under the Legal Metrology Act, 2009.
+    </p>
+  </aside>
+</BaseLayout>

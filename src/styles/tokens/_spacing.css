@@ -1,0 +1,25 @@
+/**
+ * WeighGuard Design Tokens — Spacing
+ * Single source of truth: DESIGN.md
+ * Mobile-first: 1rem lateral margins, tight tactical rhythm.
+ */
+:root {
+  --wg-gutter: 1rem;
+  --wg-gutter-desktop: 1.5rem;
+  --wg-margin: 1rem;
+  --wg-margin-tablet: 1.5rem;
+  --wg-margin-desktop: 2.5rem;
+  --wg-space-xs: 0.25rem;
+  --wg-space-sm: 0.5rem;
+  --wg-space-md: 0.75rem;
+  --wg-space-lg: 1.25rem;
+  --wg-space-xl: 2rem;
+
+  /* Touch ergonomics */
+  --wg-tap-min: 48px;
+  --wg-tap-min-legacy: 40px;
+
+  /* Layout */
+  --wg-max-width: 28rem;
+  --wg-max-width-desktop: 72rem;
+}

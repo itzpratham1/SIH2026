@@ -1,0 +1,153 @@
+---
+import QRCode from 'qrcode';
+import BaseLayout from '../../layouts/BaseLayout/index.astro';
+import PrintButton from '../../components/foundation/PrintButton/index.tsx';
+import seedCerts from '../../data/seed-certificates.json';
+import { tamperEnvelopeBase64 } from '../../lib/cbor';
+import styles from './styles.module.css';
+
+interface Scenario {
+  cardNo: string;
+  title: string;
+  demoSlot: string;
+  instrumentId: string;
+  sealNumber: string;
+  payload: string;
+  expectedOutcome: string;
+  outcomeTone: 'green' | 'amber' | 'red';
+  certificateHref?: string;
+}
+
+function findCert(instrumentId: string): { cert_id: string; cbor_base64: string } {
+  const cert = (seedCerts as { cert_id: string; instrument_id: string; cbor_base64: string }[]).find(
+    (c) => c.instrument_id === instrumentId,
+  );
+  if (!cert) throw new Error(`Demo certificate not found for instrument: ${instrumentId}`);
+  return cert;
+}
+
+const c1 = findCert('IND-FD-4410-GZP');
+const c2 = findCert('IND-SC-1083-AZD');
+const c3 = findCert('IND-SC-4403-GZP') || findCert('IND-SC-4404-GZP');
+const c4 = findCert('IND-WB-4491-GZP');
+
+const scenarios: Scenario[] = [
+  {
+    cardNo: 'Card 1 of 5',
+    title: 'Valid Green Fuel Pump — time + usage',
+    demoSlot: 'Demo 3:30–4:00 · scan in airplane mode',
+    instrumentId: 'IND-FD-4410-GZP',
+    sealNumber: 'SEAL-DL-88240',
+    payload: c1.cbor_base64,
+    expectedOutcome: 'Signature valid · match physical seal · within ±0.5% MPE',
+    outcomeTone: 'green',
+    certificateHref: `/certificate/${c1.cert_id}/`,
+  },
+  {
+    cardNo: 'Card 2 of 5',
+    title: 'Valid Amber Shop Scale — time-only, due soon',
+    demoSlot: 'Demo 3:30–4:00 · attention-due banner',
+    instrumentId: 'IND-SC-1083-AZD',
+    sealNumber: 'SEAL-DL-41914',
+    payload: c2.cbor_base64,
+    expectedOutcome: 'Signature valid · legally valid, due for re-checking sooner',
+    outcomeTone: 'amber',
+    certificateHref: `/certificate/${c2.cert_id}/`,
+  },
+  {
+    cardNo: 'Card 3 of 5',
+    title: 'Valid Red Overdue Scale — high priority',
+    demoSlot: 'Demo 3:30–4:00 · inspector triage topper',
+    instrumentId: 'IND-SC-7730-VSH',
+    sealNumber: 'SEAL-MH-77120',
+    payload: findCert('IND-TX-7730-VSH').cbor_base64,
+    expectedOutcome: 'Signature valid · overdue for re-verification, prioritised for review',
+    outcomeTone: 'red',
+    certificateHref: `/certificate/${findCert('IND-TX-7730-VSH').cert_id}/`,
+  },
+  {
+    cardNo: 'Card 4 of 5',
+    title: 'Revoked Weighbridge — failed field test',
+    demoSlot: 'Demo 4:00–4:45 · instant red revocation alert + 1915 SMS',
+    instrumentId: 'IND-WB-4491-GZP',
+    sealNumber: 'SEAL-UP-88220',
+    payload: c4.cbor_base64,
+    expectedOutcome: 'Certificate revoked — failed verification, MPE exceeded',
+    outcomeTone: 'red',
+    certificateHref: `/rejection/${c4.cert_id}/`,
+  },
+  {
+    cardNo: 'Card 5 of 5',
+    title: 'Tampered QR Payload — flipped byte',
+    demoSlot: 'Demo 4:45–5:30 · signature-invalid banner',
+    instrumentId: 'IND-FD-4410-GZP (mutated copy)',
+    sealNumber: 'SEAL-DL-88240',
+    payload: tamperEnvelopeBase64(c1.cbor_base64),
+    expectedOutcome: 'Signature invalid — payload tampered, single bit changed',
+    outcomeTone: 'red',
+  },
+];
+
+const cards = await Promise.all(
+  scenarios.map(async (scenario) => ({
+    ...scenario,
+    qrDataUrl: await QRCode.toDataURL(scenario.payload, {
+      width: 512,
+      margin: 2,
+      errorCorrectionLevel: 'M',
+    }),
+  })),
+);
+---
+
+<BaseLayout title="Demo QR Sheet">
+  <div class={styles.toolbar}>
+    <div class={styles.toolbarLeft}>
+      <a href="/" class={styles.backLink} title="Return to Homepage">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        <span>← Back to Home</span>
+      </a>
+      <p class={styles.kicker}>Jury demo pack · scan every card in airplane mode</p>
+    </div>
+    <PrintButton client:load label="Print QR Sheet" />
+  </div>
+
+  <section aria-label="Demo QR scenario cards" class={styles.sheet}>
+    {cards.map((card) => (
+      <article aria-label={card.title} class={styles.card}>
+        <header class={styles.cardHead}>
+          <p class={styles.cardNo}>{card.cardNo}</p>
+          <h2 class={styles.cardTitle}>{card.title}</h2>
+          <p class={styles.demoSlot}>{card.demoSlot}</p>
+        </header>
+        <img
+          src={card.qrDataUrl}
+          alt={`Demo QR for ${card.title}`}
+          width="512"
+          height="512"
+          class={styles.qrImage}
+        />
+        <dl class={styles.meta}>
+          <div class={styles.metaRow}>
+            <dt>Instrument</dt>
+            <dd data-forensic>{card.instrumentId}</dd>
+          </div>
+          <div class={styles.metaRow}>
+            <dt>Seal</dt>
+            <dd data-forensic>{card.sealNumber}</dd>
+          </div>
+        </dl>
+        <p data-tone={card.outcomeTone} class={styles.outcome}>
+          Expected: {card.expectedOutcome}
+        </p>
+        {card.certificateHref && (
+          <a href={card.certificateHref} class={styles.docLink} data-print-hide="true">
+            Open formal document →
+          </a>
+        )}
+      </article>
+    ))}
+  </section>
+</BaseLayout>

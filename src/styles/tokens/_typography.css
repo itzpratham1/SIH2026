@@ -1,0 +1,55 @@
+/**
+ * WeighGuard Design Tokens — Typography
+ * UI: Public Sans | Forensic/technical: JetBrains Mono
+ * Single source of truth: DESIGN.md
+ */
+:root {
+  --wg-font-ui: 'Public Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --wg-font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+
+  /* Headlines */
+  --wg-headline-xl-size: 32px;
+  --wg-headline-xl-weight: 700;
+  --wg-headline-xl-line: 40px;
+  --wg-headline-xl-spacing: -0.02em;
+  --wg-headline-xl-mobile-size: 26px;
+  --wg-headline-xl-mobile-line: 32px;
+  --wg-headline-xl-mobile-spacing: -0.01em;
+  --wg-headline-lg-size: 24px;
+  --wg-headline-lg-weight: 700;
+  --wg-headline-lg-line: 32px;
+  --wg-headline-lg-spacing: -0.015em;
+  --wg-headline-md-size: 20px;
+  --wg-headline-md-weight: 600;
+  --wg-headline-md-line: 28px;
+  --wg-headline-sm-size: 16px;
+  --wg-headline-sm-weight: 600;
+  --wg-headline-sm-line: 24px;
+
+  /* Body */
+  --wg-body-lg-size: 16px;
+  --wg-body-lg-line: 24px;
+  --wg-body-md-size: 14px;
+  --wg-body-md-line: 20px;
+  --wg-body-sm-size: 12px;
+  --wg-body-sm-line: 16px;
+
+  /* Labels */
+  --wg-label-lg-size: 13px;
+  --wg-label-lg-weight: 600;
+  --wg-label-lg-line: 18px;
+  --wg-label-lg-spacing: 0.02em;
+  --wg-label-md-size: 11px;
+  --wg-label-md-weight: 600;
+  --wg-label-md-line: 16px;
+  --wg-label-md-spacing: 0.04em;
+
+  /* Forensic code styles */
+  --wg-code-verify-size: 13px;
+  --wg-code-verify-weight: 500;
+  --wg-code-verify-line: 18px;
+  --wg-code-verify-spacing: 0.05em;
+  --wg-code-timestamp-size: 11px;
+  --wg-code-timestamp-line: 14px;
+  --wg-code-timestamp-spacing: 0.02em;
+}

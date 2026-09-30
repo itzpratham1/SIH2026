@@ -1,0 +1,441 @@
+/* ─────────────────────────────────────────────
+   LANDING PAGE — WeighGuard
+   Rich, vibrant, mobile-optimized sovereign UI.
+   ───────────────────────────────────────────── */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.kicker {
+  font-family: var(--wg-font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--wg-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kicker::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--wg-secondary);
+  box-shadow: 0 0 6px rgba(217, 119, 6, 0.6);
+  flex-shrink: 0;
+}
+
+.title {
+  font-family: var(--wg-font-ui);
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--wg-primary);
+}
+
+.lede {
+  font-family: var(--wg-font-ui);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--wg-on-surface-variant);
+  max-width: 60ch;
+}
+
+/* ─── Live Registry Stats with Vibrant Theming ───────────────────── */
+.stats {
+  margin: 10px 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.stat {
+  border-radius: var(--wg-radius-lg);
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: transform 120ms ease;
+}
+
+.stat:active {
+  transform: scale(0.98);
+}
+
+.stat dt {
+  font-family: var(--wg-font-ui);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  order: 2;
+}
+
+.stat dd {
+  margin: 0;
+  font-family: var(--wg-font-mono);
+  font-size: 22px;
+  font-weight: 800;
+  order: 1;
+  line-height: 1.1;
+}
+
+/* Stat color variants */
+.statInstruments {
+  background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 100%);
+  border: 1px solid #a7f3d0;
+  border-top: 3px solid #059669;
+}
+.statInstruments dt { color: #047857; }
+.statInstruments dd { color: #065f46; }
+
+.statMandis {
+  background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
+  border: 1px solid #bae6fd;
+  border-top: 3px solid #0284c7;
+}
+.statMandis dt { color: #0369a1; }
+.statMandis dd { color: #075985; }
+
+.statReview {
+  background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
+  border: 1px solid #fde68a;
+  border-top: 3px solid #d97706;
+}
+.statReview dt { color: #b45309; }
+.statReview dd { color: #92400e; }
+
+/* ─── Problem / How It Works Sovereign Container ────────────────── */
+.problem {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: linear-gradient(145deg, #132a24 0%, #1c3d32 100%);
+  border-radius: var(--wg-radius-xl);
+  padding: 16px 14px;
+  box-shadow: 0 4px 14px rgba(19, 42, 36, 0.15);
+  color: #ffffff;
+}
+
+.problemHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.problemSeal {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.sectionTitle {
+  font-family: var(--wg-font-ui);
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.sectionText {
+  font-family: var(--wg-font-ui);
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: #c4d8ce;
+  margin: 2px 0 0 0;
+}
+
+/* ─── 3-Step workflow ───────────────────────────────────────────── */
+.steps {
+  margin: 2px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background-color: #ffffff;
+  border-radius: var(--wg-radius-md);
+  padding: 10px 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stepBadge {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.step1 {
+  border-left: 4px solid #059669;
+}
+.step1 .stepBadge {
+  background-color: #059669;
+}
+.step1 .stepTitle {
+  color: #065f46;
+}
+
+.step2 {
+  border-left: 4px solid #d97706;
+}
+.step2 .stepBadge {
+  background-color: #d97706;
+}
+.step2 .stepTitle {
+  color: #92400e;
+}
+
+.step3 {
+  border-left: 4px solid #dc2626;
+}
+.step3 .stepBadge {
+  background-color: #dc2626;
+}
+.step3 .stepTitle {
+  color: #991b1b;
+}
+
+.stepTitle {
+  font-family: var(--wg-font-ui);
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.stepText {
+  font-family: var(--wg-font-ui);
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--wg-on-surface-variant);
+  margin-left: 28px;
+}
+
+/* ─── Portal Entry Cards with Vibrant Colors ─────────────────────── */
+.entries {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  padding: 10px 14px;
+  background-color: #ffffff;
+  border: 1px solid var(--wg-outline-variant);
+  border-radius: var(--wg-radius-lg);
+  text-decoration: none;
+  transition: all 140ms ease;
+  position: relative;
+  touch-action: manipulation;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.entry:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(19, 42, 36, 0.08);
+}
+
+.entry:active {
+  transform: scale(0.985);
+}
+
+.iconBadge {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.entryContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.entryTitle {
+  font-family: var(--wg-font-ui);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--wg-primary);
+  line-height: 1.2;
+}
+
+.entryText {
+  font-family: var(--wg-font-ui);
+  font-size: 12px;
+  color: var(--wg-on-surface-variant);
+  line-height: 1.3;
+}
+
+.entryChevron {
+  margin-left: auto;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Distinct Portal Color Theming */
+.entryVerify {
+  border-left: 4px solid #2563eb;
+}
+.entryVerify .iconBadge {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+.entryVerify .entryChevron { color: #2563eb; }
+
+.entryInspect {
+  border-left: 4px solid #059669;
+}
+.entryInspect .iconBadge {
+  background-color: #ecfdf5;
+  border: 1px solid #a7f3d0;
+}
+.entryInspect .entryChevron { color: #059669; }
+
+.entryTrader {
+  border-left: 4px solid #d97706;
+}
+.entryTrader .iconBadge {
+  background-color: #fffbeb;
+  border: 1px solid #fde68a;
+}
+.entryTrader .entryChevron { color: #d97706; }
+
+.entryLmo {
+  border-left: 4px solid #7c3aed;
+}
+.entryLmo .iconBadge {
+  background-color: #f5f3ff;
+  border: 1px solid #ddd6fe;
+}
+.entryLmo .entryChevron { color: #7c3aed; }
+
+.entryAdmin {
+  border-left: 4px solid #be123c;
+}
+.entryAdmin .iconBadge {
+  background-color: #fff1f2;
+  border: 1px solid #fecdd3;
+}
+.entryAdmin .entryChevron { color: #be123c; }
+
+.entryDemo {
+  border-left: 4px solid #0891b2;
+}
+.entryDemo .iconBadge {
+  background-color: #ecfeff;
+  border: 1px solid #a5f3fc;
+}
+.entryDemo .entryChevron { color: #0891b2; }
+
+/* ─── Statutory Notice ──────────────────────────────────────────── */
+.notice {
+  padding: 12px 14px;
+  background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%);
+  border: 1px solid #fde68a;
+  border-left: 4px solid #d97706;
+  border-radius: var(--wg-radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.noticeTitle {
+  font-family: var(--wg-font-ui);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #92400e;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.noticeText {
+  font-family: var(--wg-font-ui);
+  font-size: 12px;
+  color: #78350f;
+  line-height: 1.4;
+}
+
+/* ─── Desktop breakpoint ─────────────────────────────────────────── */
+@media (min-width: 48rem) {
+  .title {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .lede {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .stats {
+    gap: 12px;
+  }
+
+  .stat {
+    padding: 14px 16px;
+  }
+
+  .stat dd {
+    font-size: 28px;
+  }
+
+  .problem {
+    padding: 20px;
+  }
+
+  .entries {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .steps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .stepText {
+    margin-left: 0;
+  }
+}

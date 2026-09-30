@@ -1,0 +1,152 @@
+.sheet {
+  background-color: var(--wg-surface-lowest);
+  border: 2px solid var(--wg-error);
+  border-radius: var(--wg-radius-xl);
+  box-shadow: var(--wg-shadow-md);
+  padding: var(--wg-space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wg-space-lg);
+  max-width: 100%;
+}
+
+.masthead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wg-space-xs);
+  border-bottom: 2px double var(--wg-error);
+  padding-bottom: var(--wg-space-lg);
+}
+
+.govLine {
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-label-md-size);
+  font-weight: var(--wg-label-md-weight);
+  letter-spacing: var(--wg-label-md-spacing);
+  text-transform: uppercase;
+  color: var(--wg-on-surface-variant);
+}
+
+.deptLine {
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-body-md-size);
+  font-weight: 600;
+  color: var(--wg-primary);
+}
+
+.docTitle {
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-headline-lg-size);
+  font-weight: var(--wg-headline-lg-weight);
+  line-height: var(--wg-headline-lg-line);
+  color: var(--wg-error);
+}
+
+.scheduleLine {
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-body-sm-size);
+  color: var(--wg-on-surface-variant);
+}
+
+.noticeNo {
+  font-family: var(--wg-font-mono);
+  font-size: var(--wg-code-verify-size);
+  font-weight: var(--wg-code-verify-weight);
+  letter-spacing: var(--wg-code-verify-spacing);
+  color: var(--wg-critical-text);
+}
+
+.order {
+  background-color: var(--wg-critical-bg);
+  border: 1px solid var(--wg-critical-border);
+  border-radius: var(--wg-radius-lg);
+  padding: var(--wg-space-md);
+}
+
+.orderText {
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-body-md-size);
+  line-height: var(--wg-body-md-line);
+  color: var(--wg-on-error-container);
+}
+
+.rejected {
+  color: var(--wg-error);
+}
+
+.fieldGrid {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--wg-space-md);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wg-space-xs);
+  border-bottom: var(--wg-border-hairline);
+  padding-bottom: var(--wg-space-sm);
+}
+
+.field dt {
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-label-md-size);
+  font-weight: var(--wg-label-md-weight);
+  letter-spacing: var(--wg-label-md-spacing);
+  text-transform: uppercase;
+  color: var(--wg-on-surface-variant);
+}
+
+.field dd {
+  margin: 0;
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-body-md-size);
+  color: var(--wg-on-surface);
+}
+
+.field dd[data-forensic],
+.field dt[data-forensic] {
+  font-family: var(--wg-font-mono);
+}
+
+.signOff {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--wg-space-lg);
+}
+
+.signBox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wg-space-xs);
+}
+
+.signLine {
+  font-family: var(--wg-font-ui);
+  color: var(--wg-outline);
+}
+
+.signCaption {
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-body-sm-size);
+  color: var(--wg-on-surface-variant);
+}
+
+@media (min-width: 48rem) {
+  .fieldGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .signOff {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media print {
+  .sheet {
+    box-shadow: none;
+    border-radius: 0;
+  }
+}

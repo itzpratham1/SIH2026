@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout/index.astro';
+import Dashboard from '../../components/features/Dashboard/index.tsx';
+import ErrorBoundary from '../../components/foundation/ErrorBoundary/index.tsx';
+---
+
+<BaseLayout title="Dashboard — Multi-Stakeholder Control Center">
+  <ErrorBoundary>
+    <Dashboard client:load />
+  </ErrorBoundary>
+</BaseLayout>
+

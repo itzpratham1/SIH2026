@@ -20,5 +20,43 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
+# jetbrains & vscode setting folders
 .idea/
+.vscode/
+
+# Agent & AI specific files
+.agents/
+AGENTS.md
+CLAUDE.md
+DEV_SYNC_LOG.md
+skills-lock.json
+
+# Demo scripts, presentation docs & generated PDFs
+FINAL_*
+*.pdf
+WeighGuard_SIH2026_Final_Submission.pdf
+development_plan.md
+PROJECT_CONTEXT.md
+generate_script_pdf.py
+scripts/submission_doc.html
+scripts/generate_pdf.py
+
+
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+.venv/
+venv/
+backend/weighguard.db
+
+# Android build outputs & local config
+.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+android/.gradle/
+

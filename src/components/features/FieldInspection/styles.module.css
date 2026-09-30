@@ -1,0 +1,543 @@
+/**
+ * WeighGuard Field Inspection Form Styles.
+ * Clean, mobile-first, tactile, institutional.
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.headerCard {
+  background: var(--wg-primary);
+  color: var(--wg-on-primary);
+  border-radius: var(--wg-radius-lg);
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+.titleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+}
+
+.officerBadge {
+  background: var(--wg-primary-fixed);
+  color: var(--wg-on-primary-fixed);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  font-family: var(--wg-font-mono);
+}
+
+.subtitle {
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--wg-on-primary-container);
+  margin: 0;
+}
+
+/* Presets Bar */
+.presetsBar {
+  background: var(--wg-surface-lowest);
+  border: 1px solid var(--wg-outline-variant);
+  border-radius: var(--wg-radius-lg);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.presetsTitle {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--wg-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.presetsButtons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.presetPassBtn {
+  background: var(--wg-success-bg);
+  color: var(--wg-success-strong);
+  border: 1px solid var(--wg-success-border);
+  padding: 10px 12px;
+  border-radius: var(--wg-radius-md);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  touch-action: manipulation;
+}
+
+.presetPassBtn:hover {
+  background: #dcfce7;
+}
+
+.presetFailBtn {
+  background: var(--wg-critical-bg);
+  color: var(--wg-critical-text);
+  border: 1px solid var(--wg-critical-border);
+  padding: 10px 12px;
+  border-radius: var(--wg-radius-md);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  touch-action: manipulation;
+}
+
+.presetFailBtn:hover {
+  background: #fee2e2;
+}
+
+/* Form Container */
+.formCard {
+  background: var(--wg-surface-lowest);
+  border: 1px solid var(--wg-outline-variant);
+  border-radius: var(--wg-radius-lg);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.fieldSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid var(--wg-surface-container);
+  padding-bottom: 14px;
+}
+
+.fieldSection:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.sectionHeading {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--wg-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.formLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--wg-on-surface);
+}
+
+.formInput,
+.formSelect {
+  padding: 10px 12px;
+  border: 1px solid var(--wg-outline);
+  border-radius: var(--wg-radius-md);
+  font-family: inherit;
+  font-size: 14px;
+  background: var(--wg-surface-low);
+  min-height: 46px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.formInput:focus,
+.formSelect:focus {
+  outline: 2px solid var(--wg-primary);
+  background: #ffffff;
+}
+
+.forensicInput {
+  font-family: var(--wg-font-mono);
+  font-weight: 600;
+}
+
+/* Dynamic MPE Evaluation Banner */
+.mpeEvaluationBanner {
+  border-radius: var(--wg-radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.bannerPass {
+  background: var(--wg-success-bg);
+  border: 1.5px solid var(--wg-success-text);
+  color: var(--wg-success-strong);
+}
+
+.bannerFail {
+  background: var(--wg-critical-bg);
+  border: 1.5px solid var(--wg-error);
+  color: var(--wg-critical-text);
+}
+
+.evaluationTitle {
+  font-size: 13.5px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.evaluationMetrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: var(--wg-font-mono);
+  font-size: 12px;
+}
+
+.evaluationNote {
+  font-size: 11.5px;
+  line-height: 1.35;
+  opacity: 0.95;
+}
+
+.formHelperText {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--wg-on-surface-variant);
+  margin-top: 2px;
+}
+
+/* Checkbox group */
+.checkboxGroup {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px;
+  background: var(--wg-surface-low);
+  border: 1px solid var(--wg-outline-variant);
+  border-radius: var(--wg-radius-md);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.checkboxGroup:hover {
+  background: var(--wg-surface-high);
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: var(--wg-primary);
+  flex-shrink: 0;
+}
+
+.checkboxText {
+  font-size: 12.5px;
+  color: var(--wg-on-surface);
+  line-height: 1.4;
+}
+
+/* Photo evidence */
+.photoBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--wg-surface-low);
+  border: 1.5px dashed var(--wg-outline);
+  border-radius: var(--wg-radius-md);
+  transition: all 0.2s ease;
+}
+
+.photoLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.photoPreview {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--wg-radius-sm);
+  background: var(--wg-surface-high);
+  border: 1px solid var(--wg-outline-variant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.photoInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.photoTitle {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--wg-on-surface);
+  line-height: 1.3;
+}
+
+.photoSubtitle {
+  font-size: 12px;
+  color: var(--wg-on-surface-variant);
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.photoBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #047857;
+  background: #ecfdf5;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid #a7f3d0;
+  width: fit-content;
+  margin-top: 2px;
+}
+
+.photoActionBtn {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: var(--wg-radius-md);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  touch-action: manipulation;
+}
+
+.photoBtnCapture {
+  background: var(--wg-primary);
+  color: #ffffff;
+  border: 1px solid var(--wg-primary-border);
+}
+
+.photoBtnCapture:hover {
+  background: var(--wg-primary-container);
+}
+
+.photoBtnRemove {
+  background: #fff1f2;
+  color: #be123c;
+  border: 1px solid #fecdd3;
+}
+
+.photoBtnRemove:hover {
+  background: #ffe4e6;
+  border-color: #fda4af;
+}
+
+@media (max-width: 480px) {
+  .photoBox {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .photoLeft {
+    width: 100%;
+  }
+
+  .photoActionBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Submit Actions */
+.actionsRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.btnSubmitPass {
+  background: var(--wg-primary);
+  color: #ffffff;
+  border: 1px solid var(--wg-primary-border);
+  padding: 12px 16px;
+  border-radius: var(--wg-radius-md);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 48px;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btnSubmitPass:hover {
+  background: var(--wg-primary-container);
+}
+
+.btnSubmitPass:active {
+  transform: scale(0.98);
+}
+
+.btnSubmitFail {
+  background: var(--wg-error);
+  color: #ffffff;
+  border: 1px solid #7f1d1d;
+  padding: 12px 16px;
+  border-radius: var(--wg-radius-md);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 48px;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btnSubmitFail:hover {
+  background: #991b1b;
+}
+
+.btnSubmitFail:active {
+  transform: scale(0.98);
+}
+
+/* Outcome Result Cards */
+.outcomeCardPass {
+  background: var(--wg-surface-lowest);
+  border: 1.5px solid var(--wg-success-text);
+  border-radius: var(--wg-radius-lg);
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-sizing: border-box;
+}
+
+.outcomeCardFail {
+  background: var(--wg-surface-lowest);
+  border: 1.5px solid var(--wg-error);
+  border-radius: var(--wg-radius-lg);
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-sizing: border-box;
+}
+
+.qrContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: var(--wg-surface-low);
+  border: 1px solid var(--wg-outline-variant);
+  border-radius: var(--wg-radius-md);
+  padding: 14px;
+}
+
+.qrCode {
+  padding: 8px;
+  background: #ffffff;
+  border-radius: var(--wg-radius-md);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Tablet / Desktop Overrides ─────────────────────────────────── */
+@media (min-width: 48rem) {
+  .headerCard {
+    padding: 18px 20px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .presetsButtons {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .formCard {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .formGrid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+  }
+}

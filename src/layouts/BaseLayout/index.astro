@@ -1,0 +1,151 @@
+---
+import styles from './styles.module.css';
+import '../../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Offline-first Legal Metrology verification — SIH 2026 PS 26036.' } = Astro.props;
+
+const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isHome = currentPath === '/';
+const isVerify = currentPath.startsWith('/verify');
+const isInspect = currentPath.startsWith('/inspect');
+const isDashboard = currentPath.startsWith('/dashboard');
+const isDemo = currentPath.startsWith('/demo-qr-sheet');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#132a24" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{title} — WeighGuard</title>
+    <style is:inline>:root{--wg-surface:#fbf9f4;--wg-surface-dim:#dfd5c4;--wg-surface-bright:#fbf9f4;--wg-surface-lowest:#fff;--wg-surface-low:#f8f5ee;--wg-surface-container:#f4efe6;--wg-surface-high:#ece5d8;--wg-surface-highest:#e3dacb;--wg-on-surface:#1c1917;--wg-on-surface-variant:#57534e;--wg-inverse-surface:#33302c;--wg-inverse-on-surface:#f7efe9;--wg-outline:#a8a29e;--wg-outline-variant:#d8cfc0;--wg-surface-tint:#4c635c;--wg-primary:#132a24;--wg-on-primary:#fff;--wg-primary-container:#1b382b;--wg-on-primary-container:#c4d8ce;--wg-inverse-primary:#b2ccc3;--wg-primary-border:#2d5241;--wg-switcher-track:#10231e;--wg-secondary:#b45309;--wg-on-secondary:#fff;--wg-secondary-container:#d97706;--wg-on-secondary-container:#451a03;--wg-tertiary:#001505;--wg-on-tertiary:#fff;--wg-tertiary-container:#002d10;--wg-on-tertiary-container:#3d9f58;--wg-error:#b91c1c;--wg-on-error:#fff;--wg-error-container:#fee2e2;--wg-on-error-container:#7f1d1d;--wg-primary-fixed:#cee8df;--wg-primary-fixed-dim:#a3c2b4;--wg-on-primary-fixed:#081f1a;--wg-on-primary-fixed-variant:#344b44;--wg-secondary-fixed:#fef3c7;--wg-secondary-fixed-dim:#fde68a;--wg-on-secondary-fixed:#78350f;--wg-on-secondary-fixed-variant:#763300;--wg-tertiary-fixed:#95f8a7;--wg-tertiary-fixed-dim:#79db8d;--wg-on-tertiary-fixed:#00210a;--wg-on-tertiary-fixed-variant:#005323;--wg-background:#fbf9f4;--wg-on-background:#1e1b17;--wg-surface-variant:#e8e1db;--wg-success-bg:#f0fdf4;--wg-success-text:#15803d;--wg-success-border:#bbf7d0;--wg-success-strong:#14532d;--wg-warning-bg:#fffbeb;--wg-warning-text:#92400e;--wg-warning-border:#fde68a;--wg-warning-strong:#78350f;--wg-critical-bg:#fef2f2;--wg-critical-text:#991b1b;--wg-critical-border:#fecaca;--wg-font-ui:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;--wg-font-mono:'JetBrains Mono',ui-monospace,'Cascadia Code',monospace;--wg-headline-xl-size:32px;--wg-headline-xl-weight:700;--wg-headline-xl-line:40px;--wg-headline-xl-spacing:-.02em;--wg-headline-xl-mobile-size:26px;--wg-headline-xl-mobile-line:32px;--wg-headline-xl-mobile-spacing:-.01em;--wg-headline-lg-size:24px;--wg-headline-lg-weight:700;--wg-headline-lg-line:32px;--wg-headline-lg-spacing:-.015em;--wg-headline-md-size:20px;--wg-headline-md-weight:600;--wg-headline-md-line:28px;--wg-headline-sm-size:16px;--wg-headline-sm-weight:600;--wg-headline-sm-line:24px;--wg-body-lg-size:16px;--wg-body-lg-line:24px;--wg-body-md-size:14px;--wg-body-md-line:20px;--wg-body-sm-size:12px;--wg-body-sm-line:16px;--wg-label-lg-size:13px;--wg-label-lg-weight:600;--wg-label-lg-line:18px;--wg-label-lg-spacing:.02em;--wg-label-md-size:11px;--wg-label-md-weight:600;--wg-label-md-line:16px;--wg-label-md-spacing:.04em;--wg-code-verify-size:13px;--wg-code-verify-weight:500;--wg-code-verify-line:18px;--wg-code-verify-spacing:.05em;--wg-code-timestamp-size:11px;--wg-code-timestamp-line:14px;--wg-code-timestamp-spacing:.02em;--wg-gutter:1rem;--wg-gutter-desktop:1.5rem;--wg-margin:1rem;--wg-margin-tablet:1.5rem;--wg-margin-desktop:2.5rem;--wg-space-xs:.25rem;--wg-space-sm:.5rem;--wg-space-md:.75rem;--wg-space-lg:1.25rem;--wg-space-xl:2rem;--wg-tap-min:48px;--wg-tap-min-legacy:40px;--wg-max-width:28rem;--wg-max-width-desktop:72rem;--wg-radius-sm:.125rem;--wg-radius:.25rem;--wg-radius-md:.375rem;--wg-radius-lg:.5rem;--wg-radius-xl:.75rem;--wg-radius-full:9999px;--wg-border-hairline:1px solid var(--wg-outline-variant);--wg-border-strong:1px solid var(--wg-outline);--wg-shadow-sm:0 1px 2px rgb(28 25 23 / 0.06);--wg-shadow-md:0 2px 8px rgb(28 25 23 / 0.08);--wg-shadow-inner:inset 0 1px 3px rgb(19 42 36 / 0.18);--wg-dur-fast:150ms;--wg-dur-normal:220ms;--wg-ease-standard:cubic-bezier(0.2,0,0,1);--wg-ease-decel:cubic-bezier(0,0,0.2,1)}</style>
+  </head>
+  <body>
+    <a href="#main" class={styles.skipLink}>Skip to content</a>
+    <header class={styles.header}>
+      <div class={styles.headerInner}>
+        <div class={styles.brandRow}>
+          <a
+            href="/"
+            class={styles.brand}
+            aria-label="WeighGuard — Legal Metrology Homepage"
+            title="WeighGuard — Return to Homepage"
+          >
+            <span aria-hidden="true" class={styles.seal}>⚖️</span>
+            <span class={styles.brandText}>
+              <strong class={styles.brandName}>WeighGuard</strong>
+              <span class={styles.brandSub}>Legal Metrology · SIH 2026</span>
+            </span>
+          </a>
+        </div>
+
+        <nav class={styles.nav} aria-label="Main Navigation">
+          <a
+            href="/"
+            class:list={[styles.navLink, { [styles.activeNav]: isHome }]}
+            aria-current={isHome ? 'page' : undefined}
+            title="Homepage"
+          >
+            <span class={styles.navIcon} aria-hidden="true">🏠</span>
+            <span>Home</span>
+          </a>
+          <a
+            href="/verify/"
+            class:list={[styles.navLink, { [styles.activeNav]: isVerify }]}
+            aria-current={isVerify ? 'page' : undefined}
+            title="Verify Instrument"
+          >
+            <span class={styles.navIcon} aria-hidden="true">🔍</span>
+            <span>Verify</span>
+          </a>
+          <a
+            href="/inspect/"
+            class:list={[styles.navLink, { [styles.activeNav]: isInspect }]}
+            aria-current={isInspect ? 'page' : undefined}
+            title="Field Inspection"
+          >
+            <span class={styles.navIcon} aria-hidden="true">👮</span>
+            <span>Inspect</span>
+          </a>
+          <a
+            href="/dashboard/"
+            class:list={[styles.navLink, { [styles.activeNav]: isDashboard }]}
+            aria-current={isDashboard ? 'page' : undefined}
+            title="Dashboard"
+          >
+            <span class={styles.navIcon} aria-hidden="true">📊</span>
+            <span>Dashboard</span>
+          </a>
+          <a
+            href="/demo-qr-sheet/"
+            class:list={[styles.navLink, { [styles.activeNav]: isDemo }]}
+            aria-current={isDemo ? 'page' : undefined}
+            title="Demo Test Sheet"
+          >
+            <span class={styles.navIcon} aria-hidden="true">📄</span>
+            <span>Demo Sheet</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class={styles.main}>
+      <slot />
+    </main>
+    <footer class={styles.footer}>
+      <div class={styles.footerInner}>
+        <div class={styles.footerBrand}>
+          <span aria-hidden="true">⚖️</span>
+          <span class={styles.footerBrandName}>WeighGuard</span>
+        </div>
+        <p class={styles.footerText}>
+          WeighGuard prototype · Ministry of Consumer Affairs, Legal Metrology Division · PS 26036
+        </p>
+        <p data-forensic class={styles.footerMeta}>
+          Evaluation sandbox — production login via MeriPehchan / e-Pramaan SSO
+        </p>
+      </div>
+    </footer>
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        const isDev =
+          location.port === '4322' ||
+          location.port === '3000' ||
+          location.hostname === 'localhost' ||
+          location.hostname === '127.0.0.1' ||
+          /^192\.168\./.test(location.hostname) ||
+          /^172\.(1[6-9]|2[0-9]|3[0-1])\./.test(location.hostname) ||
+          /^10\./.test(location.hostname);
+
+        if (isDev) {
+          navigator.serviceWorker.getRegistrations().then((registrations) => {
+            for (const registration of registrations) {
+              registration.unregister();
+            }
+          });
+          if ('caches' in window) {
+            caches.keys().then((names) => {
+              for (const name of names) {
+                caches.delete(name);
+              }
+            });
+          }
+        } else {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').catch(() => {});
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

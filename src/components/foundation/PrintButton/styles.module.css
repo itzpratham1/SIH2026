@@ -1,0 +1,26 @@
+.printButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wg-space-sm);
+  min-height: var(--wg-tap-min);
+  padding: var(--wg-space-sm) var(--wg-space-lg);
+  border-radius: var(--wg-radius-lg);
+  background-color: var(--wg-primary);
+  color: var(--wg-on-primary);
+  border: 1px solid var(--wg-primary-border);
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-body-md-size);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.printButton:active {
+  transform: scale(0.95);
+}
+
+@media print {
+  .printButton {
+    display: none;
+  }
+}

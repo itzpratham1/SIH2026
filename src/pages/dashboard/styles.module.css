@@ -1,0 +1,34 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wg-space-md);
+}
+
+.title {
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-headline-lg-size);
+  font-weight: var(--wg-headline-lg-weight);
+  line-height: var(--wg-headline-lg-line);
+  color: var(--wg-primary);
+}
+
+.lede {
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-body-md-size);
+  line-height: var(--wg-body-md-line);
+  color: var(--wg-on-surface-variant);
+}
+
+.slot {
+  background-color: var(--wg-surface-lowest);
+  border: var(--wg-border-hairline);
+  border-radius: var(--wg-radius-xl);
+  padding: var(--wg-space-lg);
+}
+
+.placeholder {
+  font-family: var(--wg-font-mono);
+  font-size: var(--wg-code-timestamp-size);
+  line-height: var(--wg-code-timestamp-line);
+  color: var(--wg-on-surface-variant);
+}

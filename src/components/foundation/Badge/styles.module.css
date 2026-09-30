@@ -1,0 +1,83 @@
+/* WeighGuard Foundation — Badge
+   Monospaced forensic status indicators with optional live pulse. */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: var(--wg-tap-min-legacy);
+  padding: 2px var(--wg-space-sm);
+  border-radius: var(--wg-radius-full);
+  font-family: var(--wg-font-mono);
+  font-size: var(--wg-code-verify-size);
+  font-weight: var(--wg-code-verify-weight);
+  line-height: var(--wg-code-verify-line);
+  letter-spacing: var(--wg-code-verify-spacing);
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: box-shadow 300ms ease;
+}
+
+/* ── Status dot (render optionally in JSX as a sibling span) ── */
+.badge::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background-color: currentColor;
+  opacity: 0.7;
+}
+
+/* ── Green / Compliant ── */
+.badge[data-tone='green'] {
+  background-color: var(--wg-success-bg);
+  color: var(--wg-success-text);
+  border-color: var(--wg-success-border);
+}
+
+/* ── Amber / Attention ── */
+.badge[data-tone='amber'] {
+  background-color: var(--wg-warning-bg);
+  color: var(--wg-warning-text);
+  border-color: var(--wg-warning-border);
+}
+
+/* Amber pulse — for upcoming expiry / attention-due */
+.badge[data-tone='amber'][data-pulse='true'] {
+  animation: wg-pulse-amber 2.4s ease-in-out infinite;
+}
+
+/* ── Red / Critical ── */
+.badge[data-tone='red'] {
+  background-color: var(--wg-critical-bg);
+  color: var(--wg-critical-text);
+  border-color: var(--wg-critical-border);
+}
+
+/* Red pulse — for overdue/revoked instruments */
+.badge[data-tone='red'][data-pulse='true'] {
+  animation: wg-pulse-critical 1.8s ease-in-out infinite;
+}
+
+/* ── Neutral ── */
+.badge[data-tone='neutral'] {
+  background-color: var(--wg-surface-container);
+  color: var(--wg-on-surface-variant);
+  border-color: var(--wg-outline-variant);
+}
+
+/* No dot for neutral */
+.badge[data-tone='neutral']::before {
+  display: none;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .badge[data-tone='amber'][data-pulse='true'],
+  .badge[data-tone='red'][data-pulse='true'] {
+    animation: none;
+  }
+}

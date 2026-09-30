@@ -1,0 +1,113 @@
+---
+import styles from './styles.module.css';
+
+interface Props {
+  certId: string;
+  instrumentId: string;
+  instrumentType: string;
+  deviceModel: string;
+  ownerName: string;
+  location: string;
+  mandiCluster?: string;
+  physicalSealNumber: string;
+  officerName: string;
+  officerId: string;
+  verifiedOn: string;
+  validUntil: string;
+  keyVersion: string;
+  qrDataUrl: string;
+  confidenceScore: string;
+  confidenceBand: 'green' | 'amber' | 'red';
+  confidenceBasis: string;
+  basisDescription: string;
+  mpeStatusText: string;
+  clarificationText: string;
+  revocationUpdatedAt: string;
+}
+
+const props = Astro.props;
+---
+
+<article aria-label={`Certificate of Verification ${props.certId}`} class={styles.sheet}>
+  <header class={styles.masthead}>
+    <p class={styles.govLine}>Government of India · Ministry of Consumer Affairs, Food &amp; Public Distribution</p>
+    <p class={styles.deptLine}>Legal Metrology Division</p>
+    <h1 class={styles.docTitle}>Certificate of Verification</h1>
+    <p class={styles.scheduleLine}>Issued under the Legal Metrology (General) Rules, 2011 — Schedule XI</p>
+    <p data-forensic class={styles.certNo}>No. {props.certId}</p>
+  </header>
+
+  <dl class={styles.fieldGrid}>
+    <div class={styles.field}>
+      <dt>Trader / Owner</dt>
+      <dd>{props.ownerName}</dd>
+    </div>
+    <div class={styles.field}>
+      <dt>Premises</dt>
+      <dd>{props.location}</dd>
+    </div>
+    {props.mandiCluster && (
+      <div class={styles.field}>
+        <dt>Market Cluster</dt>
+        <dd>{props.mandiCluster}</dd>
+      </div>
+    )}
+    <div class={styles.field}>
+      <dt>Instrument</dt>
+      <dd>{props.deviceModel} ({props.instrumentType})</dd>
+    </div>
+    <div class={styles.field}>
+      <dt data-forensic>Instrument ID</dt>
+      <dd data-forensic>{props.instrumentId}</dd>
+    </div>
+    <div class={styles.field}>
+      <dt>Statutory Seal No.</dt>
+      <dd data-forensic>{props.physicalSealNumber}</dd>
+    </div>
+    <div class={styles.field}>
+      <dt>Accuracy Class</dt>
+      <dd>Class III — Legal Metrology (General) Rules, 2011</dd>
+    </div>
+    <div class={styles.field}>
+      <dt>Verifying Officer</dt>
+      <dd>{props.officerName} ({props.officerId})</dd>
+    </div>
+    <div class={styles.field}>
+      <dt>Verified On</dt>
+      <dd data-forensic>{props.verifiedOn}</dd>
+    </div>
+    <div class={styles.field}>
+      <dt>Valid Until</dt>
+      <dd data-forensic>{props.validUntil}</dd>
+    </div>
+  </dl>
+
+  <section aria-label="Verification QR code" class={styles.qrBlock}>
+    <img src={props.qrDataUrl} alt={`Signed verification QR for ${props.certId}`} width="512" height="512" class={styles.qrImage} />
+    <div class={styles.qrMeta}>
+      <p class={styles.qrCaption}>Scan with WeighGuard to verify offline — no network required.</p>
+      <p data-forensic class={styles.qrKey}>Key {props.keyVersion} · Revocation registry as of {props.revocationUpdatedAt}</p>
+    </div>
+  </section>
+
+  <section aria-label="Confidence and tolerance" class={styles.confidence}>
+    <p class={styles.confLine}>
+      Confidence <strong data-band={props.confidenceBand} class={styles.band}>{props.confidenceBand} · {props.confidenceScore}</strong>
+      <span class={styles.basis}>({props.confidenceBasis})</span>
+    </p>
+    <p class={styles.basisText}>{props.basisDescription}</p>
+    <p class={styles.mpeText}>{props.mpeStatusText}</p>
+    <p class={styles.clarification}>{props.clarificationText}</p>
+  </section>
+
+  <footer class={styles.signOff}>
+    <div class={styles.signBox}>
+      <p class={styles.signLine}>_________________________</p>
+      <p class={styles.signCaption}>Inspector, Legal Metrology</p>
+    </div>
+    <div class={styles.signBox}>
+      <p class={styles.signLine}>_________________________</p>
+      <p class={styles.signCaption}>Trader acknowledgement &amp; shop-display copy</p>
+    </div>
+  </footer>
+</article>

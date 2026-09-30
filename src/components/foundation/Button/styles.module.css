@@ -1,0 +1,146 @@
+/* WeighGuard Foundation — Button
+   Government-grade: purposeful, high-contrast, accessible. */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wg-space-sm);
+  min-height: var(--wg-tap-min);
+  padding: var(--wg-space-sm) var(--wg-space-lg);
+  border-radius: var(--wg-radius-lg);
+  font-family: var(--wg-font-ui);
+  font-size: var(--wg-body-md-size);
+  font-weight: 600;
+  line-height: var(--wg-body-md-line);
+  cursor: pointer;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 120ms var(--wg-ease-spring, ease),
+    background-color 150ms var(--wg-ease-standard, ease),
+    box-shadow 150ms ease,
+    border-color 150ms ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ripple effect base */
+.button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgb(255 255 255 / 0.18) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.button:hover::after {
+  opacity: 1;
+}
+
+.button:active {
+  transform: scale(0.96);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  pointer-events: none;
+}
+
+/* ── Primary ── */
+.button[data-variant='primary'] {
+  background-color: var(--wg-primary);
+  color: var(--wg-on-primary);
+  border-color: var(--wg-primary-border);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.07),
+    0 1px 3px rgb(19 42 36 / 0.22);
+}
+
+.button[data-variant='primary']:hover:not(:disabled) {
+  background-color: var(--wg-primary-border);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.07),
+    0 4px 12px rgb(19 42 36 / 0.28);
+  transform: translateY(-1px);
+}
+
+.button[data-variant='primary']:active:not(:disabled) {
+  transform: scale(0.97) translateY(0);
+  box-shadow: 0 1px 3px rgb(19 42 36 / 0.22);
+}
+
+/* ── Secondary ── */
+.button[data-variant='secondary'] {
+  background-color: var(--wg-surface-high);
+  color: var(--wg-primary);
+  border: var(--wg-border-hairline);
+  box-shadow: 0 1px 2px rgb(19 42 36 / 0.06);
+}
+
+.button[data-variant='secondary']:hover:not(:disabled) {
+  background-color: var(--wg-surface-highest);
+  border-color: var(--wg-outline);
+  box-shadow: 0 2px 6px rgb(19 42 36 / 0.1);
+  transform: translateY(-1px);
+}
+
+.button[data-variant='secondary']:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* ── Danger / Enforcement ── */
+.button[data-variant='danger'] {
+  background-color: var(--wg-error);
+  color: var(--wg-on-error);
+  border-color: #991b1b;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.07),
+    0 1px 3px rgb(185 28 28 / 0.25);
+}
+
+.button[data-variant='danger']:hover:not(:disabled) {
+  background-color: #991b1b;
+  box-shadow: 0 4px 12px rgb(185 28 28 / 0.3);
+  transform: translateY(-1px);
+}
+
+.button[data-variant='danger']:active:not(:disabled) {
+  transform: scale(0.97) translateY(0);
+}
+
+/* ── Loading state ── */
+.button[data-loading='true'] {
+  pointer-events: none;
+}
+
+.button[data-loading='true']::before {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: wg-spin 0.6s linear infinite;
+  margin-right: var(--wg-space-xs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+  .button::after {
+    display: none;
+  }
+  .button:hover:not(:disabled) {
+    transform: none;
+  }
+  .button[data-loading='true']::before {
+    animation: none;
+  }
+}

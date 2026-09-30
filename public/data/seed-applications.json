@@ -1,0 +1,99 @@
+[
+  {
+    "application_id": "APP-2026-901",
+    "trader_id": "TRADER-GZP-101",
+    "trader_name": "Choudhary Onion Traders",
+    "instrument_id": "IND-SC-4402-GZP",
+    "applied_at": "2026-09-27T14:17:09Z",
+    "status": "PENDING_ALLOCATION",
+    "allocated_to": null,
+    "allocated_entity_type": null,
+    "assigned_officer_name": null,
+    "scheduled_date": null,
+    "scheduled_time_slot": null,
+    "supporting_documents": [
+      {
+        "doc_id": "DOC-901-1",
+        "doc_name": "Previous_Schedule_XI_Certificate.pdf",
+        "doc_type": "PREVIOUS_CERTIFICATE",
+        "file_url": "/sample-docs/cert-prev.pdf"
+      },
+      {
+        "doc_id": "DOC-901-2",
+        "doc_name": "Annual_Maintenance_Repairer_Memo.pdf",
+        "doc_type": "REPAIRER_MEMO",
+        "file_url": "/sample-docs/repair-memo.pdf"
+      }
+    ]
+  },
+  {
+    "application_id": "APP-2026-902",
+    "trader_id": "TRADER-AZD-204",
+    "trader_name": "Gupta Banana Ripening Chamber",
+    "instrument_id": "IND-SC-1083-AZD",
+    "applied_at": "2026-09-26T14:17:09Z",
+    "status": "PENDING_ALLOCATION",
+    "allocated_to": null,
+    "allocated_entity_type": null,
+    "assigned_officer_name": null,
+    "scheduled_date": null,
+    "scheduled_time_slot": null,
+    "supporting_documents": [
+      {
+        "doc_id": "DOC-902-1",
+        "doc_name": "APMC_Mandi_Trade_Possession_License.pdf",
+        "doc_type": "POSSESSION_PROOF",
+        "file_url": "/sample-docs/possession.pdf"
+      }
+    ]
+  },
+  {
+    "application_id": "APP-2026-880",
+    "trader_id": "TRADER-GZP-102",
+    "trader_name": "East Delhi Potato Merchants",
+    "instrument_id": "IND-SC-4403-GZP",
+    "applied_at": "2026-09-24T14:17:09Z",
+    "status": "INSPECTION_SCHEDULED",
+    "allocated_to": "LM-OFFICER-789",
+    "allocated_entity_type": "LMO_OFFICER",
+    "assigned_officer_name": "A. K. Sharma (Squad #2)",
+    "scheduled_date": "2026-09-28",
+    "scheduled_time_slot": "10:30 AM - 11:30 AM",
+    "supporting_documents": [
+      {
+        "doc_id": "DOC-880-1",
+        "doc_name": "Schedule_XI_Renewal_Submission.pdf",
+        "doc_type": "PREVIOUS_CERTIFICATE",
+        "file_url": "/sample-docs/cert-prev.pdf"
+      }
+    ]
+  },
+  {
+    "application_id": "APP-2026-881",
+    "trader_id": "TRADER-AZD-205",
+    "trader_name": "Sharma & Co Garlic Suppliers",
+    "instrument_id": "IND-SC-1084-AZD",
+    "applied_at": "2026-09-23T14:17:09Z",
+    "status": "INSPECTION_SCHEDULED",
+    "allocated_to": "GATC-DEL-04",
+    "allocated_entity_type": "GATC",
+    "assigned_officer_name": "Govt Approved Test Centre Delhi #4",
+    "scheduled_date": "2026-09-28",
+    "scheduled_time_slot": "02:00 PM - 03:00 PM",
+    "supporting_documents": []
+  },
+  {
+    "application_id": "APP-2026-850",
+    "trader_id": "TRADER-DEL-010",
+    "trader_name": "Aggarwal Fresh Apple Wholesale",
+    "instrument_id": "IND-SC-1081-AZD",
+    "applied_at": "2026-09-07T14:17:09Z",
+    "status": "CERTIFIED",
+    "allocated_to": "LM-OFFICER-412",
+    "allocated_entity_type": "LMO_OFFICER",
+    "assigned_officer_name": "V. P. Singh, Inspector LM",
+    "scheduled_date": "2026-09-08",
+    "scheduled_time_slot": "11:00 AM - 12:00 PM",
+    "supporting_documents": []
+  }
+]

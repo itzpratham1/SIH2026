@@ -1,0 +1,22 @@
+/**
+ * WeighGuard Design Tokens — Shapes & Elevation
+ * Single source of truth: DESIGN.md
+ * Soft / Architectural shape language.
+ */
+:root {
+  --wg-radius-sm: 0.125rem;
+  --wg-radius: 0.25rem;
+  --wg-radius-md: 0.375rem;
+  --wg-radius-lg: 0.5rem;
+  --wg-radius-xl: 0.75rem;
+  --wg-radius-full: 9999px;
+
+  /* Borders */
+  --wg-border-hairline: 1px solid var(--wg-outline-variant);
+  --wg-border-strong: 1px solid var(--wg-outline);
+
+  /* Elevation — tonal layering, low-contrast borders over heavy shadows */
+  --wg-shadow-sm: 0 1px 2px rgb(28 25 23 / 0.06);
+  --wg-shadow-md: 0 2px 8px rgb(28 25 23 / 0.08);
+  --wg-shadow-inner: inset 0 1px 3px rgb(19 42 36 / 0.18);
+}
